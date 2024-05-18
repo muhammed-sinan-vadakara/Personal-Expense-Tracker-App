@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "777226834682",
+    "firebase_url": "https://personalexpensetraker-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "personalexpensetraker",
+    "storage_bucket": "personalexpensetraker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777226834682:android:a0d80171249636f0812f43",
+        "android_client_info": {
+          "package_name": "com.example.expense_tracker_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777226834682-bfu6vsjcrosra9ducgjsu0fj687mnd5q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.expense_tracker_app",
+            "certificate_hash": "aef678e34e9b81bc888e67794f51f5b1fd2c99b6"
+          }
+        },
+        {
+          "client_id": "777226834682-o6h6mtcmcdjeiq9jnq0l26gakk2o2skm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlzcoSDtZbblf51FYOYRC64cI0Li0bM7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777226834682-o6h6mtcmcdjeiq9jnq0l26gakk2o2skm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "777226834682-63pfd4grdih5pemmfqceu4e76a0bgkme.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.expenseTrackerApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

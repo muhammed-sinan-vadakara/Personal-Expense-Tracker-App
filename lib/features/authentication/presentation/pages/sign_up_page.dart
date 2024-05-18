@@ -1,25 +1,26 @@
 import 'package:expense_tracker_app/core/themes/app_theme.dart';
 import 'package:expense_tracker_app/core/widgets/common_widgets/elevated_button_widget.dart';
 import 'package:expense_tracker_app/core/widgets/common_widgets/form_textfield_widget.dart';
-import 'package:expense_tracker_app/features/authentication/presentation/pages/sign_up_page.dart';
+import 'package:expense_tracker_app/core/widgets/common_widgets/text_fleid_widget.dart';
+import 'package:expense_tracker_app/features/authentication/presentation/pages/login_page.dart';
 import 'package:expense_tracker_app/features/authentication/presentation/providers/auth_provider.dart';
 import 'package:expense_tracker_app/features/authentication/presentation/widgets/auth_elevated_button.dart';
-import 'package:expense_tracker_app/features/authentication/presentation/widgets/form_feild_password_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class LoginPage extends HookConsumerWidget {
-  static const routePath = '/login';
-  const LoginPage({super.key});
+class SignupPage extends HookConsumerWidget {
+  static const routePath = '/signup';
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _formKey = GlobalKey<FormState>();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
+    final nameController = TextEditingController();
     final appTheme = AppTheme.of(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -37,7 +38,8 @@ class LoginPage extends HookConsumerWidget {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding:
+                EdgeInsets.symmetric(horizontal: appTheme.spaces.space_200),
             child: Form(
               key: _formKey,
               child: Column(
@@ -45,7 +47,7 @@ class LoginPage extends HookConsumerWidget {
                 children: [
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(appTheme.spaces.space_200),
                       // child: SizedBox(
                       //     height: 150,
                       //     width: 300,
@@ -55,8 +57,26 @@ class LoginPage extends HookConsumerWidget {
                     ),
                   ),
                   SizedBox(
-                    height: appTheme.spaces.space_500,
+                    height: appTheme.spaces.space_700,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Text(
+                      "NAME",
+                      style: TextStyle(fontSize: appTheme.spaces.space_200),
+                    ),
+                  ),
+                  SizedBox(
+                    height: appTheme.spaces.space_100,
+                  ),
+                  TextFieldWidget(
+                      hinttText: "NAME",
+                      keyboardtype: TextInputType.name,
+                      prefixxIcon: Icon(
+                        Icons.person_outline_outlined,
+                        color: appTheme.colors.primary,
+                      ),
+                      controller: nameController),
                   SizedBox(
                     height: appTheme.spaces.space_200,
                   ),
@@ -92,7 +112,7 @@ class LoginPage extends HookConsumerWidget {
                       ),
                       controller: emailController),
                   SizedBox(
-                    height: appTheme.spaces.space_300,
+                    height: appTheme.spaces.space_200,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: appTheme.spaces.space_200),
@@ -104,7 +124,7 @@ class LoginPage extends HookConsumerWidget {
                   SizedBox(
                     height: appTheme.spaces.space_150,
                   ),
-                  PasswordFormTextFieldWidget(
+                  FormTextFieldWidget(
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Enter Password";
@@ -114,25 +134,30 @@ class LoginPage extends HookConsumerWidget {
                       },
                       hinttText: "PASSWORD",
                       keyboardtype: TextInputType.number,
+                      prefixxIcon: Icon(
+                        Icons.remove_red_eye_outlined,
+                        color: appTheme.colors.primary,
+                      ),
                       controller: passwordController),
                   SizedBox(
                     height: appTheme.spaces.space_400,
                   ),
                   ElevatedButtonWidget(
-                      text: "Login ",
+                      text: "SIGN UP",
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Processing Data')),
                           );
                         } else {
-                          ref.read(authenticationProvider.notifier).login(
+                          ref.read(authenticationProvider.notifier).signup(
                               context,
                               emailController.text,
                               passwordController.text);
                         }
                       }
                       // =>
+
                       ),
                   SizedBox(
                     height: appTheme.spaces.space_150,
@@ -162,16 +187,16 @@ class LoginPage extends HookConsumerWidget {
                     colours: appTheme.colors.textDisabled,
                   ),
                   SizedBox(
-                    height: appTheme.spaces.space_150,
+                    height: appTheme.spaces.space_50,
                   ),
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Do not have an account . Please"),
+                        Text("Already have an account . Please"),
                         TextButton(
-                          onPressed: () => context.go(SignupPage.routePath),
+                          onPressed: () => context.go(LoginPage.routePath),
                           child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(
@@ -181,11 +206,14 @@ class LoginPage extends HookConsumerWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(6.0),
                                 child: Text(
-                                  "SignUp",
+                                  "Login",
                                   style:
                                       TextStyle(color: appTheme.colors.primary),
                                 ),
                               )),
+                        ),
+                        SizedBox(
+                          height: appTheme.spaces.space_250,
                         ),
                       ],
                     ),
