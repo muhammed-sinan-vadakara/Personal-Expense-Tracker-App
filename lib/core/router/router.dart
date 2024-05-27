@@ -2,6 +2,7 @@ import 'package:expense_tracker_app/features/authentication/presentation/pages/a
 import 'package:expense_tracker_app/features/authentication/presentation/pages/login_page.dart';
 import 'package:expense_tracker_app/features/authentication/presentation/pages/profile_page.dart';
 import 'package:expense_tracker_app/features/authentication/presentation/pages/sign_up_page.dart';
+import 'package:expense_tracker_app/features/home/presentation/pages/add_expense_page.dart';
 import 'package:expense_tracker_app/features/home/presentation/pages/home_page.dart';
 import 'package:expense_tracker_app/main.dart';
 import 'package:go_router/go_router.dart';
@@ -11,7 +12,7 @@ part 'router.g.dart';
 
 final router = GoRouter(
   navigatorKey: MyApp.navigatorKey,
-  initialLocation: LoginPage.routePath,
+  initialLocation: AddExpensePage.routePath,
   routes: [
     GoRoute(
       path: LoginPage.routePath,
@@ -32,6 +33,10 @@ final router = GoRouter(
     GoRoute(
       path: HomePage.routePath,
       builder: (context, state) => const HomePage(),
+    ),
+    GoRoute(
+      path: AddExpensePage.routePath,
+      builder: (context, state) => AddExpensePage(),
     ),
   ],
 );

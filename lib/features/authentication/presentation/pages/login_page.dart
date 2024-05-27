@@ -134,6 +134,7 @@ class LoginPage extends HookConsumerWidget {
                       }
                       // =>
                       ),
+                  Text(DateTime.now().toString()),
                   SizedBox(
                     height: appTheme.spaces.space_150,
                   ),
